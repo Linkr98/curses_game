@@ -77,15 +77,27 @@ int main(void)
     char tmp_board[ARRAY_SIZE][ARRAY_SIZE];
     // int sleep_time = 1000;
     int character_code;
-    int location_x = 5;
-    int location_y = 5;
+    int location_x = 5, location_y = 5, player_big = 0;
     char board[ARRAY_SIZE][ARRAY_SIZE];
     int done = 0;
+    int mush_x = 9, mush_y = 4, mush_exists = 1;
     initscr();
     while(done == 0){
+      // Setup a turn.
       clear_board(board, ' ');
-      board[location_x][location_y] = 'x';
+
+      // Turn logic.
+      if (mush_exists){
+        board[mush_x][mush_y] = 'o';
+      }
+      if (player_big){
+        board[location_x][location_y] = 'X';
+      }else{
+        board[location_x][location_y] = 'x';
+      }
+      // Draw the turn to the screen.
       update(board, tmp_board);
+
       char letter = getch();
       if (letter == 'w') {
         location_y++;
@@ -101,8 +113,11 @@ int main(void)
       }
       location_x = bound_position(location_x);
       location_y = bound_position(location_y);
-      // character_code = getch();
-      // clear_board(board, character_code);
+      if (location_x == mush_x && location_y == mush_y){
+        mush_exists = 0;
+        player_big = 1;
+      }
+
     }
 
     addstr("\npress any key to exit...");
