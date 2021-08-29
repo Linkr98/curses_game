@@ -24,7 +24,9 @@ void clear_board(char some_board[ARRAY_SIZE][ARRAY_SIZE], char which_char){
 }
 
 void print_horz_border(){
+  addch(' ');
   for(int col=0; col<ARRAY_SIZE; col++){
+    addch('_');
     addch('_');
   }
   addch('\n');
@@ -33,10 +35,12 @@ void print_horz_border(){
 void print_board(char some_board[ARRAY_SIZE][ARRAY_SIZE]){
   print_horz_border();
   for(int row=ARRAY_SIZE-1; row>=0; row--){
+    addch('|');
     for(int col=0; col<ARRAY_SIZE; col++){
       addch(some_board[col][row]);
       addch(' ');
     }
+    addch('|');
     addch('\n');
   }
   print_horz_border();
@@ -79,7 +83,7 @@ int main(void)
     int done = 0;
     initscr();
     while(done == 0){
-      clear_board(board, 'o');
+      clear_board(board, ' ');
       board[location_x][location_y] = 'x';
       update(board, tmp_board);
       char letter = getch();
