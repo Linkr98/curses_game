@@ -9,7 +9,7 @@
 void copy_board(char dst[ARRAY_SIZE][ARRAY_SIZE], char src[ARRAY_SIZE][ARRAY_SIZE]);
 void clear_board(char some_board[ARRAY_SIZE][ARRAY_SIZE], char which_char);
 void print_board(char some_board[ARRAY_SIZE][ARRAY_SIZE]);
-void update(char current_board[ARRAY_SIZE][ARRAY_SIZE], char [ARRAY_SIZE][ARRAY_SIZE]);
+void update(char current_board[ARRAY_SIZE][ARRAY_SIZE], char old_board[ARRAY_SIZE][ARRAY_SIZE]);
 
 
 
